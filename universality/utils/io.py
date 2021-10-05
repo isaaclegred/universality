@@ -75,6 +75,13 @@ def load(inpath, columns=[], logcolumns=[], max_num_samples=DEFAULT_MAX_NUM_SAMP
 
     return data, cols #, dict((strind, col) for col, strind in strmap.items())
 
+def load_columns(inpath):
+    """ Load the columns form a file without loading the data
+    """
+    with open(inpath, 'r') as obj:
+        cols = [_.strip() for _ in obj.readline().strip().split(',')]
+        return cols
+
 def load_weights(*args, **kwargs):
     """loads and returns weights from multiple columns via  delegation to load_logweights
     normalizes the weights while it's at it
